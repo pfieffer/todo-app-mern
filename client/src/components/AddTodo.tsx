@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ToastContainer } from 'react-toastify';
 
 type Props = {
   saveTodo: (e: React.FormEvent, formData: ITodo | any) => void
@@ -27,6 +28,7 @@ const AddTodo: React.FC<Props> = ({ saveTodo }) => {
         </div>
       </div>
       <button disabled={formData === undefined ? true : false} >Add Todo</button>
+      <ToastContainer />
     </form>
   )
 }

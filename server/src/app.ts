@@ -3,7 +3,6 @@ import bodyParser from "body-parser"
 import mongoose, { ConnectOptions } from "mongoose"
 import cors from "cors"
 import todoRoutes from "./routes"
-import { error } from "console"
 
 const app: Express = express()
 
@@ -30,14 +29,3 @@ mongoose.connect(uri, {
   .catch(error => {
     throw error
   })
-
-// mongoose
-//   .connect(uri, options)
-//   .then(() =>
-//     app.listen(PORT, () =>
-//       console.log(`Server running on http://localhost:${PORT}`)
-//     )
-//   )
-//   .catch(error => {
-//     throw error
-//   })

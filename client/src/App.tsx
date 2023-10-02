@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import TodoItem from './components/TodoItem'
 import AddTodo from './components/AddTodo'
 import { getTodos, addTodo, updateTodo, deleteTodo } from './API'
@@ -16,8 +18,18 @@ const App: React.FC = () => {
       .catch((err: Error) => console.log(err))
   }
 
+  const notify = (msg: String) => toast(msg);
+
   const handleSaveTodo = (e: React.FormEvent, formData: ITodo): void => {
     e.preventDefault()
+    if (!formData.name || formData.name.trim().length === 0) {
+      notify('Name cannot be empty')
+      return
+    }
+    if (!formData.description || formData.description.trim().length === 0) {
+      notify('Description cannot be empty')
+      return
+    }
     addTodo(formData)
       .then(({ status, data }) => {
         if (status !== 201) {
